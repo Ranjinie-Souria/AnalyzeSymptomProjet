@@ -23,6 +23,10 @@ public class TreatSymptomDataFromFile implements ISymptomTreatment {
 		this.symptomsWithDuplicates = symptomsWithDuplicates;
 	}
 	
+	public TreatSymptomDataFromFile() {
+		super();
+	}
+
 	public List<String> getListDuplicates() {
 		return symptomsWithDuplicates;
 	}
@@ -31,14 +35,15 @@ public class TreatSymptomDataFromFile implements ISymptomTreatment {
 	 * The symptoms with their names and occurrences
 	 */
 	@Override
-	public Map<String, Integer> treatSymptoms() {
+	public Map<String, Integer> treatSymptoms(List<String> symptomsWithDuplicates) {
+		this.symptomsWithDuplicates = symptomsWithDuplicates;
 		Map<String, Integer> symptomsChecked = new HashMap<String, Integer>();
 				
 		for (int i = 0; i < this.symptomsWithDuplicates.size(); i++) {
 	    	symptomsChecked.put(this.symptomsWithDuplicates.get(i), numberOfSymptoms(this.symptomsWithDuplicates.get(i)));
 	    }
 		
-		return symptomsChecked;
+		return orderSymptoms(symptomsChecked);
 	}
 	
 	/***
@@ -67,7 +72,6 @@ public class TreatSymptomDataFromFile implements ISymptomTreatment {
 			if(symptom.equals(symptomEntered)) {
 				numberSymptom++;
 			}
-			
 		}
 		return numberSymptom;
 	}

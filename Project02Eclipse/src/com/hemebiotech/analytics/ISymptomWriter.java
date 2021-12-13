@@ -1,5 +1,7 @@
 package com.hemebiotech.analytics;
 
+import java.util.Map;
+
 /**
  * 
  * Interface to write the data
@@ -8,6 +10,8 @@ package com.hemebiotech.analytics;
 public interface ISymptomWriter {
 	/**
 	 * Writes the results
+	 * 
+	 * @param treatSymptoms The results to write
 	 */
-	void writeSymptoms();
+	void writeSymptoms(Map<String, Integer> treatSymptoms);
 }

@@ -1,20 +1,18 @@
 package com.hemebiotech.analytics;
 
 import java.util.List;
-import java.util.TreeMap;
+import java.util.Map;
 
 public class AnalyticsCounter {
 	public static void main(String args[]) throws Exception {
 		
-		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("symptoms.txt");
-		List<String> symptomsWithDuplicates = reader.getSymptoms();
+		Analyze analyze = new Analyze(new ReadSymptomDataFromFile("symptoms.txt"),
+				new TreatSymptomDataFromFile(),
+				new WriteResultsDataFromFile());
 		
-		TreatSymptomDataFromFile treatment = new TreatSymptomDataFromFile(symptomsWithDuplicates);
-		TreeMap<String, Integer> symptomsChecked = treatment.orderSymptoms(treatment.treatSymptoms());
-		
-		WriteResultsDataFromFile writer = new WriteResultsDataFromFile(symptomsChecked);
-		writer.writeSymptoms();
-		writer.informUserOfSymptoms();
+		List<String> symptomsWithDuplicates = analyze.getSymptoms();
+		Map<String, Integer> symptomsChecked = analyze.treatSymptoms(symptomsWithDuplicates);
+		analyze.writeSymptoms(symptomsChecked);
 		
 	}
 }

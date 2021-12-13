@@ -21,6 +21,10 @@ public class WriteResultsDataFromFile implements ISymptomWriter {
 		this.symptomsChecked = symptomsChecked;
 	}
 	
+	public WriteResultsDataFromFile () {
+		super();
+	}
+
 	public Map<String, Integer> getSymptomsAndOccurrences() {
 		return symptomsChecked;
 	}
@@ -31,15 +35,16 @@ public class WriteResultsDataFromFile implements ISymptomWriter {
 	 * 
 	 */
 	@Override
-	public void writeSymptoms() {
+	public void writeSymptoms(Map<String, Integer> treatSymptoms) {
+		this.symptomsChecked = treatSymptoms;
 		try {
 			FileWriter writer = new FileWriter ("result.out");
-			for (Map.Entry<String, Integer> entry : this.symptomsChecked.entrySet()) {
+			for (Map.Entry<String, Integer> entry : treatSymptoms.entrySet()) {
 				String symptomName = entry.getKey();
 				Integer symptomCount = entry.getValue();
 				writer.write(symptomName+": " + symptomCount + "\n");
 			}
-			
+			informUserOfSymptoms();
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
