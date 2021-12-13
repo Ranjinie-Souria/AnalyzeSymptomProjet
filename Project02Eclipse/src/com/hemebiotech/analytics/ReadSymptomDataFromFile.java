@@ -4,10 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Simple brute force implementation
+ * 
+ * Reading the data from a filepath
  *
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
@@ -16,14 +20,20 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	
 	/**
 	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
+	 * Filepath a full or partial path to file with symptom strings in it, one per line
+	 * 
+	 * @param filepath The filepath
 	 */
 	public ReadSymptomDataFromFile (String filepath) {
 		this.filepath = filepath;
 	}
 	
+	public String getFilepath() {
+		return filepath;
+	}
+	
 	@Override
-	public List<String> GetSymptoms() {
+	public List<String> getSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
 		
 		if (filepath != null) {
@@ -43,5 +53,6 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		
 		return result;
 	}
+	
 
 }
