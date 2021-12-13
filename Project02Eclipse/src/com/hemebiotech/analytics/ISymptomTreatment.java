@@ -1,6 +1,6 @@
 package com.hemebiotech.analytics;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -11,7 +11,7 @@ public interface ISymptomTreatment {
 	/**
 	 * If no data is available, return an empty List
 	 * 
-	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
+	 * @return The map list of the symptoms name and their occurrence
 	 */
-	List<String> treatSymptoms ();
+	Map<String, Integer> treatSymptoms ();
 }
