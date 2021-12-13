@@ -12,7 +12,9 @@ public class AnalyticsCounter {
 		TreatSymptomDataFromFile treatment = new TreatSymptomDataFromFile(symptomsWithDuplicates);
 		TreeMap<String, Integer> symptomsChecked = treatment.orderSymptoms(treatment.treatSymptoms());
 		
-		System.out.println(symptomsChecked);
+		WriteResultsDataFromFile writer = new WriteResultsDataFromFile(symptomsChecked);
+		writer.writeSymptoms();
+		writer.informUserOfSymptoms();
 		
 	}
 }
