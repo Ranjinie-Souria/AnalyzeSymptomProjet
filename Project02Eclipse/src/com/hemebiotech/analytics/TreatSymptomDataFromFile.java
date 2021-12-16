@@ -32,30 +32,21 @@ public class TreatSymptomDataFromFile implements ISymptomTreatment {
 	}
 	
 	/**
-	 * The symptoms with their names and occurrences
+	 * The symptoms with their names and occurrences, sorted alphabetically
+	 * 
 	 */
 	@Override
 	public Map<String, Integer> treatSymptoms(List<String> symptomsWithDuplicates) {
 		this.symptomsWithDuplicates = symptomsWithDuplicates;
-		Map<String, Integer> symptomsChecked = new HashMap<String, Integer>();
+		Map<String, Integer> symptomsChecked = new TreeMap<String, Integer>();
 				
 		for (int i = 0; i < this.symptomsWithDuplicates.size(); i++) {
 	    	symptomsChecked.put(this.symptomsWithDuplicates.get(i), numberOfSymptoms(this.symptomsWithDuplicates.get(i)));
 	    }
 		
-		return orderSymptoms(symptomsChecked);
+		return symptomsChecked;
 	}
 	
-	/***
-	 * Orders the symptoms alphabetically
-	 * 
-	 * @param symptomsChecked the unsorted Map
-	 * @return the sorted map
-	 */
-	public TreeMap<String, Integer> orderSymptoms(Map<String, Integer> symptomsChecked){
-		TreeMap<String, Integer> orderedSymptoms = new TreeMap<String, Integer>(symptomsChecked);
-		return orderedSymptoms;
-	}
 	
 	
 	/**

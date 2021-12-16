@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * 
- * Treating the data from a string List
+ * Writing the data from a Map
  *
  */
 public class WriteResultsDataFromFile implements ISymptomWriter {
