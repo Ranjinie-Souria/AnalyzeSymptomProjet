@@ -7,7 +7,7 @@ public class Analyze {
 	
 	private ISymptomReader reader;
 	private ISymptomTreatment treatment;
-	private ISymptomWriter writer;
+	public ISymptomWriter writer;
 	
 	public Analyze(ISymptomReader reader, ISymptomTreatment treatment, ISymptomWriter writer) {
 		this.reader = reader;
@@ -26,7 +26,6 @@ public class Analyze {
 	public void writeSymptoms(Map<String, Integer> treatSymptoms){
 		this.writer.writeSymptoms(treatSymptoms);
 	}
-	
 	
 	
 }
