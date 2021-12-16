@@ -14,4 +14,6 @@ public interface ISymptomWriter {
 	 * @param treatSymptoms The results to write
 	 */
 	void writeSymptoms(Map<String, Integer> treatSymptoms);
+
+	String getFileName();
 }
