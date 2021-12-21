@@ -34,37 +34,29 @@ public class TreatSymptomDataFromFile implements ISymptomTreatment {
 	/**
 	 * The symptoms with their names and occurrences, sorted alphabetically
 	 * 
+	 * 
+	 * @param symptomsWithDuplicates The list of symptoms with duplicates
+	 * @return Returns the sorted map list of symptoms with their name and their occurrence
 	 */
 	@Override
 	public Map<String, Integer> treatSymptoms(List<String> symptomsWithDuplicates) {
 		this.symptomsWithDuplicates = symptomsWithDuplicates;
 		Map<String, Integer> symptomsChecked = new TreeMap<String, Integer>();
-				
-		for (int i = 0; i < this.symptomsWithDuplicates.size(); i++) {
-	    	symptomsChecked.put(this.symptomsWithDuplicates.get(i), numberOfSymptoms(this.symptomsWithDuplicates.get(i)));
-	    }
+		// Liste de symptôme (rhûme, mal de tête, mal au ventre, rhûme)
+		for(String symptom : symptomsWithDuplicates) {
+			if(symptomsChecked.containsKey(symptom)) {
+				symptomsChecked.put(symptom, symptomsChecked.get(symptom)+1);
+			}
+			else {
+				symptomsChecked.put(symptom, 1);
+			}
+			
+		}
 		
 		return symptomsChecked;
 	}
 	
 	
-	
-	/**
-	 * 
-	 * Counts the number of times a certain typed symptom appears in a list
-	 * 
-	 * @param symptomEntered The name of the symptom
-	 * @return Returns the numbers of time the symptom appears
-	 */
-	public Integer numberOfSymptoms(String symptomEntered) {
-		int numberSymptom = 0;
-		List<String> symptomList = this.symptomsWithDuplicates;
-		for(String symptom : symptomList){
-			if(symptom.equals(symptomEntered)) {
-				numberSymptom++;
-			}
-		}
-		return numberSymptom;
-	}
+
 	
 }
